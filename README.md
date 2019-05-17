@@ -1,1 +1,3 @@
 # Storymap
+
+This storymap utilizes Webslides to present general info about Oregon State University in 7 slides. The storymap begins with an aerial shot of OSU, then transitions in slide 2 to a fly-to map of OSU's location (with a marker). On slide 3 and 4, two important locations on the Corvallis campus are shown: Benton Hall, the oldest building on campus, and Goss Stadium, the home stadium of 2018 national champion baseball team. Slide 5 contains a C3 line chart of undergraduate and graduate student enrollment at OSU-Corvallis over the last 5 years. Slide 6 introduces the Cascades campus of OSU, while slide 7 displays a map with markers on both the Corvallis and Cascades campuses to visualize the distance between the two.
