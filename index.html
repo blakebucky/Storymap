@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<style>
+  html, body
+
+  .attribution{
+      position:absolute;
+      bottom:0;
+      right:0;
+      font-size:1.5em
+  }
+
+  .social {
+    position:fixed;
+    cursor: pointer;
+    font-size:24px;
+    color:darkgray;
+    z-index:1003;
+    top: 4%;
+    left:20px;
+}
+.social:hover {
+    color: blue;
+    text-decoration: none;
+}
+
+</style>
+<head>
+  <title>Lab 3 </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="please add">
+  <link rel="shortcut icon" href="img/graduation-cap.ico" type="image/x-icon">
+  <!-- CSS Base -->
+  <link rel="stylesheet" type='text/css' media='all' href="css/webslides.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+  <link href="https://fonts.googleapis.com/css?family=Walter+Turncoat" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.14/c3.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" media="all" href="css/style.css">
+  <!-- Javascript Library -->
+  <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="js/webslides.min.js"></script>
+  <script src="https://unpkg.com/d3@5/dist/d3.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.14/c3.min.js"></script>
+</head>
+
+<body>
+<a class="fab fa-facebook-square" href="https://www.facebook.com/sharer/sharer.php?u=blakebucky.github.io" target="_blank"></a>
+<a class= "fab fa-github" href="https://www.github.com/blakebucky/Storymap" target="_blank"></a>
+<main role="main">
+<article id="webslides">
+  <!-- the landing scene -->
+          <section class=bg-black>
+              <span class="background light" style="background-image:url('https://wvporegon.com/wp-content/uploads/2017/09/IMG_3657.jpg')">
+              </span>
+              <span class="attribution">Background image via Willamettte Valley Planning</span>
+              <div class="wrap aligncenter">
+                <style>
+                body {
+                 font-family: 'Walter+Turncoat';font-size: 22px;
+                  }
+                </style>
+                  <h1>
+                      <strong>Oregon State University</strong>
+                  </h1>
+              </div>
+          </section>
+          <section class="bg-apple  slide-top">
+            <div id="mymap" >
+                <!-- <div id="map"></div> -->
+                <span id="load">Load</span>
+                <span id="unload">Unload</span>
+
+            </div>
+        </section>
+          <section class=bg-black>
+              <span class="background light" style="background-image:url('https://bloximages.chicago2.vip.townnews.com/gazettetimes.com/content/tncms/assets/v3/editorial/9/d8/9d8ab385-67c0-5699-9077-e12b457fa68b/5ab44c6fb0ca2.image.jpg?resize=1200%2C673')">
+              </span>
+              <span class="attribution">Background image via Corvallis Gazette-Times</span>
+              <div class="wrap aligncenter">
+                <style>
+                body {
+                 font-family: 'Walter+Turncoat';font-size: 22px;
+                  }
+                </style>
+                  <h1>
+                      <strong>Benton Hall</strong>
+                    </br> The oldest building on the Corvallis campus
+                  </h1>
+              </div>
+          </section>
+          <section class=bg-black>
+              <span class="background light" style="background-image:url('https://osubeavers.com/images/2017/6/4/2839_Regionals_3755.jpg')">
+              </span>
+              <span class="attribution">Background image via Oregon State Athletics</span>
+              <div class="wrap aligncenter">
+                <style>
+                body {
+                 font-family: 'Walter+Turncoat';font-size: 22px;
+                  }
+                </style>
+                  <h1>
+                      <strong>Goss Stadium</strong>
+                    </br> OSU won the 2018 NCAA Baseball National Championship
+                  </h1>
+              </div>
+          </section>
+        <!-- the second chart -->
+        <section class="bg-apple  slide-top">
+          <div id="mychart" >
+              <div id="chart"></div>
+              <span id="load">Load</span>
+              <span id="unload">Unload</span>
+              <h1>OSU-Corvallis Student Enrollment Trends</h1>
+          </div>
+      </section>
+      <!-- the second chart -->
+      <section class=bg-black>
+          <span class="background light" style="background-image:url('https://www.kpff.com/portfoliov2-files/osu-cascade-campus/1-reducedcascadesdiningandresidential_2.jpg')">
+          </span>
+          <span class="attribution">Background image via KPFF Consulting Engineers</span>
+          <div class="wrap aligncenter">
+            <style>
+            body {
+             font-family: 'Walter+Turncoat';font-size: 22px;
+              }
+            </style>
+              <h1>
+                  <strong>Oregon State University-Cascades </strong>
+                </br> A satellite campus of OSU, Cascades is located in Bend, Oregon
+              </h1>
+          </div>
+      </section>
+      <section class="bg-apple  slide-top">
+          <div id="mymap2" >
+              <!-- <div id="map2"></div> -->
+          </div>
+      </section>
+
+</article>
+</main>
+
+<script>
+
+var chart = c3.generate({
+    bindto: '#chart',
+    data: {
+      columns: [
+        ['Undergraduate Students', 23161, 23903, 24612, 25327, 25838, 25699],
+        ['Graduate Students', 4179, 4410, 4385, 4466, 4458, 4666]
+      ],
+      axes: {
+        data2: 'y2' // ADD
+      },
+    },
+    axis: {
+      y: {
+            label: 'Student Count'
+        },
+      y2: {
+        show: false // ADD
+      },
+      x: {
+        type: 'category',
+        categories: ['Fall 2013', 'Fall 2014','Fall 2015','Fall 2016','Fall 2017','Fall 2018']
+    }
+    }
+});
+
+$("#load").on("click", function() {
+
+  chart.load({
+    columns: [
+      ['data3', 300, 100, 250, 150, 300, 150, 500],
+      ['data4', 100, 200, 150, 50, 100, 250]
+    ]
+  });
+
+})
+
+$("#unload").on("click", function() {
+
+  chart.unload({
+    ids: ['data3', 'data4']
+  });
+
+});
+
+var map = L.map("mymap", {zoomControl: false, scrollWheelZoom: false}).setView([35, -98], 4);
+
+var map2 = L.map("mymap2", {zoomControl: false, scrollWheelZoom: false}).setView([44, -122], 9);
+
+var popup = L.popup({
+    minWidth:500
+
+})
+  .setContent("Oregon State University, Corvallis campus")
+
+  var popup2 = L.popup({
+      minWidth:500
+
+  })
+    .setContent("Oregon State University, Cascades campus")
+
+
+L.marker([44.565751, -123.278948]).addTo(map)
+    .bindPopup(popup)
+    .openPopup();
+
+L.marker([44.565751, -123.278948]).addTo(map2)
+    .bindPopup(popup)
+    .openPopup();
+
+L.marker([44.042721,-121.333451]).addTo(map2)
+      .bindPopup(popup2)
+      .openPopup();
+
+  L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}@2x.png', {
+    maxZoom: 19
+}).addTo(map);
+
+L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}@2x.png', {
+    maxZoom: 19
+}).addTo(map2);
+
+ws = new WebSlides();
+
+ws.el.addEventListener('ws:slide-change', function () {
+
+
+  crtDiv = $(".current div");
+  //Map 1 'flyto' animation location and function
+  if (crtDiv.attr("id") === "mymap") {
+      map.invalidateSize();
+      //starting location latitude and longitude
+      map.setView([35, -98], 4);
+      //Fly to animation  new latitude and longitude
+      map.flyTo([44.565751, -123.278948], 12, {animate: true, duration: 17});
+
+  }
+
+})
+
+
+
+
+</script>
+</body>
+
+
+</html>
